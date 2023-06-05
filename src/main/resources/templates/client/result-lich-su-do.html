@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+		<h6>Lịch sử dò vé số</h6>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>STT</th>
+					<th>Tên tỉnh</th>
+					<th>Số vé</th>
+					<th>Ngày xổ số</th>
+					<th>Ngày tra cứu</th>
+					<th>Kết quả</th>
+					<th>Giá trị (VNĐ)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="o,status : ${listHistory}">
+					<td class="history-search" th:text="${indexPage*5-5+status.count}"></td>
+					<td class="history-search" th:text="${o.provinceName}"></td>
+					<td class="history-search" th:text="${o.numberLottery}"></td>
+					<td class="history-search" th:text="${#dates.format(o.datePrize, 'dd-MM-yyyy')}" /></td>
+					<td class="history-search" th:text="${#dates.format(o.dateSearch, 'dd-MM-yyyy')}"></td>
+					<td class="history-search" th:text="${o.result}"></td>
+		     		<td class="history-search" th:text="${#numbers.formatCurrency(o.valueResult)}"></td>
+		     		
+		     							
+				</tr>
+
+			</tbody>
+		</table>   
+		<div class="container mt-3">
+		<ul class="pagination d-flex justify-content-center">
+			<li class="page-item"><button type="button" class="btn btn-link btn-sm" value="1" onclick="searchhistory(this)">Đầu</button></li>
+			
+			<li class="page-item" th:if="${indexPage>1}"><button type="button" class="btn btn-link btn-sm" th:value="${(indexPage-1)}" onclick="searchhistory(this)">Trước</button></li>
+			
+			<li class="page-item"><button type="button" class="btn btn-link btn-sm"> <span th:text="${indexPage}"></span> of <span th:text="${totalPage}"></span></button></li>
+			
+			<li class="page-item" th:if="${indexPage<totalPage}"><button type="button" class="btn btn-link btn-sm" th:value="${(indexPage+1)}" onclick="searchhistory(this)">Sau</button></li>
+			
+			<li class="page-item"><button type="button" class="btn btn-link btn-sm" th:value="${totalPage}" onclick="searchhistory(this)">Cuối</button></li>
+		</ul>
+	</div>
+</body>
+</html>

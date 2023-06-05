@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Đại lý vé số HG</title>
+</head>
+<body>
+	<h6 class="bg-kqxshq">Kết quả tìm kiếm</h6>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>STT</th>
+				<th>Tên tỉnh</th>
+				<th>Mã Tỉnh</th>
+				<th>Miền</th>
+				<th>Ngày sổ xố</th>
+				<th>Trạng thái</th>
+				<th>Cập nhật</th>
+			</tr>
+		</thead>
+		<tbody>
+				<tr th:each="o, status : ${listProvince}">
+					<td th:text="${indexPage*5-5+status.count}"></td>
+					<td th:text="${o.nameProvince}"></td>
+					<td th:text="${o.idProvince}"></td>
+					<td th:text="${o.area}"></td>
+					<td th:text="${o.dayOfWeek}"></td>
+					<td th:text="${o.status}"></td>
+					<td>
+						<button type="button" class="btn btn-link" th:value="${o.idProvince}" onclick="load_province(this)">Cập nhật</button>
+						<button type="button" class="btn btn-link" th:value="${o.idProvince}" onclick="deleteProvince(this)">Xóa</button>
+					</td>
+				</tr>
+		</tbody>
+	</table>
+
+	<div class="container mt-3">
+		<ul class="pagination d-flex justify-content-center">
+			<li class="page-item"><button type="button"
+					class="btn btn-link btn-sm" value="1" onclick="searchProvince(this)">First</button></li>
+			<li th:if="${indexPage>1}" class="page-item"><button type="button"
+						class="btn btn-link btn-sm" th:value="${(indexPage-1)}"
+						onclick="searchProvince(this)">Pre</button></li>
+			<li class="page-item"><button type="button"
+					class="btn btn-link btn-sm"><span th:text="${indexPage}"></span> of <span th:text="${totalPage}"></span></button></li>
+			<li th:if="${indexPage<totalPage}" class="page-item"><button type="button"
+						class="btn btn-link btn-sm" th:value="${(indexPage+1)}"
+						onclick="searchProvince(this)">Next</button></li>
+			<li class="page-item"><button type="button"
+					class="btn btn-link btn-sm" th:value="${totalPage}"
+					onclick="searchProvince(this)">Last</button></li>
+		</ul>
+	</div>
+	
+	
+<script>	
+function searchProvince(obj)
+{	var keysearch= $("#province-name").val()
+	var page = obj.value; 
+	$("#resultDetail").hide();	
+
+                $("#province").hide();   
+                    $.ajax({
+                    url : "/xskt/admin-search-province",
+                    type : "get",
+                    dataType:"text",
+                    data : {keysearch,page                   
+                    },
+                    success : function (result){
+                    	$("#updateForm").hide();
+                    	$("#update-result").hide();
+                    	$('#resultSearch').show();
+                        $('#resultSearch').html(result);
+                    }
+                });                                                                                 
+}
+</script>	
+		
+<script>	
+function load_province(obj){ 
+            var idProvince  = obj.value;
+                $.ajax({
+                    url : "/xskt/admin-load-info-province",
+                    type : "get",
+                    dataType:"text",
+                    data : {idProvince                        
+                    },
+                    success : function (result){
+                    	$('#info-province').show();
+                        $('#info-province').html(result);
+                    }
+                });                
+            }
+</script>
+
+
+<script>
+function deleteProvince(obj)
+{
+var idProvince=obj.value;
+$("#info-province").hide();
+
+swal("Xác nhận xóa Tỉnh?", {
+  buttons: {
+    cancel: "Không xóa!",
+    xoa: {
+      text: "Xóa tỉnh",
+      value: "xoa",
+    },
+  },
+})
+.then((value) => {
+  switch (value) {
+    case "xoa":
+      $.ajax({
+                    url : "/xskt/admin-delete-province",
+                    type : "get",
+                    dataType:"text",
+                    data : {idProvince               
+                    },
+                    success : function (result){
+                    $('#resultSearch').hide();
+                    $('#result-delete').show();
+                    $('#result-delete').html(result);
+                    
+                                      
+                    }
+                });      
+      break;
+ 
+    default:
+      swal("Không thực hiện xóa");
+  }
+});
+
+}
+</script>
+
+</body>
+</html>

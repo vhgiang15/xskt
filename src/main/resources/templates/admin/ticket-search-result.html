@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+	<script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+</head>
+<body>
+	<h6>Kết quả tìm kiếm</h6>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>STT</th>
+				<th>Tên tỉnh</th>
+				<th>Mã Tỉnh</th>
+				<th>Miền</th>
+				<th>Ngày sổ xố</th>
+				<th>Chi tiết</th>
+				<th>Thao tác</th>
+				<th>
+
+					<button type="button" class="btn btn-link btn-sm"
+						th:value="${province.idProvince}" onclick="deleteFast(this)">Xóa
+						nhanh</button>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+				<tr th:each="o,status :${listDate}">
+					<td th:text="${indexPage*5-5+status.count}"></td>
+					<td th:text="${province.nameProvince}"></td>
+					<td th:text="${province.idProvince}"></td>
+					<td th:text="${province.area}"></td>
+					<td th:text="${o}"></td>
+					<td>
+						<button type="button" class="btn btn-link btn-sm" th:value="${o}" th:data-id="${province.idProvince}"
+							onclick="detailTicket(this.getAttribute('data-id'),this)">Chi tiết kết quả</button>
+					</td>
+					<td>
+						<button type="button" class="btn btn-link btn-sm" th:value="${o}" th:data-id="${province.idProvince}" 
+							onclick="updateTicketForm(this.getAttribute('data-id'),this)">Cập nhật</button>
+						<button type="button" class="btn btn-warning btn-sm" th:value="${o}" th:data-id="${province.idProvince}"
+							onclick="deleteTicket(this.getAttribute('data-id'),this)">Xóa</button>
+					</td>
+					<td>
+						<div class="form-check">
+							<input type="checkbox" class="form-check-input" name="option"
+								th:value="${o}">
+						</div>
+					</td>
+
+				</tr>
+		</tbody>
+	</table>
+	<div class="container mt-3">
+		<ul class="pagination d-flex justify-content-center">
+			<li class="page-item"><button type="button" class="btn btn-link btn-sm" th:value="1" onclick="searchticket(this)">Đầu</button></li>
+			
+
+			<li th:if="${indexPage>1}" class="page-item"><button type="button" class="btn btn-link btn-sm" th:value="${(indexPage-1)}" onclick="searchticket(this)">Trước</button></li>
+
+			
+			<li class="page-item"><button type="button" class="btn btn-link btn-sm"><span th:text="${indexPage}"></span> of <span th:text="${totalPage}"></span></button></li>
+			
+
+			<li  th:if="${indexPage<totalPage}" class="page-item"><button type="button" class="btn btn-link btn-sm" th:value="${(indexPage+1)}" onclick="searchticket(this)">Sau</button></li>
+
+			
+			<li class="page-item"><button type="button" class="btn btn-link btn-sm" th:value="${totalPage}" onclick="searchticket(this)">Cuối</button></li>
+		</ul>
+	</div>
+	
+
+<script>
+function detailTicket(id, dateo)
+{
+var idProvince=id;
+let dateKQXS=dateo.value;; 
+                    $.ajax({
+                    url : "/xskt/admin-detail-KQXS",
+                    type : "get",
+                    dataType:"text",
+                    data : {idProvince,dateKQXS                 
+                    },
+                    success : function (result){
+                    $("#updateForm").hide();
+                    $("#resultDetail").show();
+                        $('#resultDetail').html(result);
+                    }
+                });
+
+}
+</script>
+
+<script>
+function updateTicketForm(id, dateo)
+{
+var idProvince=id;
+let dateKQXS=dateo.value;
+                    $.ajax({
+                    url : "/xskt/admin-update-ticket-form",
+                    type : "get",
+                    dataType:"text",
+                    data : {idProvince,dateKQXS                 
+                    },
+                    success : function (result){
+                    $("#updateForm").show();
+                     $("#resultDetail").hide();
+                        $('#updateForm').html(result);
+                    }
+                });
+
+}
+</script>
+
+<script>
+function deleteTicket(id, dateo)
+{
+var idProvince=id;
+let dateKQXS=dateo.value;
+$("#updateForm").hide();
+$("#resultSearch").hide();
+$("#resultDetail").hide();
+swal({
+  title: "Bạn muốn xóa KQXS ?",
+  text: "Sau khi xóa sẽ không khôi phục lại được KQSX đã xóa!",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+                      $.ajax({
+                    url : "/xskt/admin-delete-KQXS",
+                    type : "get",
+                    dataType:"text",
+                    data : {idProvince,dateKQXS                 
+                    },
+                    success : function (result){                  
+                    }
+                });
+  
+    swal("Đã xóa thành công", {
+      icon: "success",
+    });    
+  } else {
+    swal("KQXS chưa xóa");
+  }
+});
+
+}
+</script>
+
+
+<script>
+function deleteFast(id)
+{
+$("#updateForm").hide();
+$("#resultSearch").hide();
+$("#resultDetail").hide();
+var idProvince=id.value;
+var checkbox = document.getElementsByName('option');
+var result = "";
+for (var i = 0; i < checkbox.length; i++)
+	{
+        if (checkbox[i].checked === true){       
+             result =result+ "," + checkbox[i].value;
+                    }
+    }
+swal({
+  title: "Bạn muốn xóa KQXS ?",
+  text: "Sau khi xóa sẽ không khôi phục lại được KQSX đã xóa!",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+                      $.ajax({
+                    url : "/xskt/admin-deleteFast-KQXS",
+                    type : "get",
+                    dataType:"text",
+                    data : {idProvince,result                 
+                    },
+                    success : function (result){                  
+                    }
+                });
+  
+    swal("Đã xóa thành công", {
+      icon: "success",
+    });    
+  } else {
+    swal("KQXS chưa xóa");
+  }
+});
+
+}
+</script>
+
+
+
+
+</body>
+</html>

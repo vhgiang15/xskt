@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+
+	<div class="d-grid" th:fragment="html_leftmenu_admin">
+		<button type="button" id="dashboard" class="btn btn-warning btn-lg btn-menu" onclick="location.href='admin-dashboard';">Dashboard</button>
+		<button type="button" id="ticket-manage" class="btn btn-warning btn-lg btn-menu active" onclick="location.href='admin-ticket-manage';">Quản lý	vé dò</button>
+		<button type="button" id="province-manage" class="btn btn-warning btn-lg btn-menu"  onclick="location.href='admin-list-province';">Quản lý	tỉnh</button>
+		<button type="button" id="user-manage" class="btn btn-warning btn-lg btn-menu" onclick="location.href='admin-user-manage';">Quản lý	user</button>
+		<button type="button" class="btn btn-warning btn-lg btn-menu" onclick="location.href='logout';">Đăng xuất</button>
+	</div>
+</body>
+</html>

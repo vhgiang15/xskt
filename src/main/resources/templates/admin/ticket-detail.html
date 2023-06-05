@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<h6 class="bg-kqxshq">Chi tiết kết quả Xổ số tỉnh <span th:text="${province}"></span> ngày <span th:text="${date}"></span></h6>
+	<table class="table table-striped table-sm" th:if="${mien=='MN'}">
+							<thead>
+								<tr>
+									<th>Tên giải</th>
+									<th class="d-flex justify-content-center">Kết quả XS</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Giải ĐB</td>
+									<td class="d-flex justify-content-center" th:text="${DBMN}"></td>
+								</tr>
+								<tr>
+									<td>Giải nhất</td>
+									<td class="d-flex justify-content-center" th:text="${G1MN}"></td>
+								</tr>
+								<tr>
+									<td>Giải nhì</td>
+									<td class="d-flex justify-content-center" th:text="${G2MN}"></td>
+								</tr>
+								<tr>
+									<td>Giải ba</td>
+									<td class="d-flex justify-content-center">
+										<div class="row d-flex">
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill" th:text="${G31MN}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill" th:text="${G32MN}"></div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>Giải tư</td>
+									<td class="d-flex justify-content-center">
+										<div class="row">
+											<div class="col-sm-12 col-lg-1 mx-2 p-0"th:text="${G41MN}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0"th:text="${G42MN}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0"th:text="${G43MN}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0"th:text="${G44MN}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0"th:text="${G45MN}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0"th:text="${G46MN}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0"th:text="${G47MN}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0"th:text="${G48MN}"></div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>Giải năm</td>
+									<td class="d-flex justify-content-center" th:text="${G5MN}"></td>
+								</tr>
+								<tr>
+									<td>Giải sáu</td>
+									<td class="d-flex justify-content-center">
+										<div class="row">
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G61MN}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G62MN}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G63MN}"></div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>Giải bảy</td>
+									<td class="d-flex justify-content-center"th:text="${G7MN}"></td>
+								</tr>
+								<tr>
+									<td>Giải tám</td>
+									<td class="d-flex justify-content-center"th:text="${G8MN}"></td>
+								</tr>
+
+							</tbody>
+
+						</table>
+	
+	<table class="table table-striped table-sm" th:if="${mien=='MT'}">
+							<thead>
+								<tr>
+									<th>Tên giải</th>
+									<th class="d-flex justify-content-center">Kết quả XS</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Giải ĐB</td>
+									<td class="d-flex justify-content-center"th:text="${DBMT}"></td>
+								</tr>
+								<tr>
+									<td>Giải nhất</td>
+									<td class="d-flex justify-content-center"th:text="${G1MT}"></td>
+								</tr>
+								<tr>
+									<td>Giải nhì</td>
+									<td class="d-flex justify-content-center"th:text="${G2MT}"></td>
+								</tr>
+								<tr>
+									<td>Giải ba</td>
+									<td class="d-flex justify-content-center">
+										<div class="row d-flex">
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G31MT}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G32MT}"></div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>Giải tư</td>
+									<td class="d-flex justify-content-center">
+										<div class="row">
+											<div class="col-sm-12 col-lg-1 mx-2 p-0"th:text="${G41MT}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0"th:text="${G42MT}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0"th:text="${G43MT}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0"th:text="${G44MT}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0"th:text="${G45MT}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0"th:text="${G46MT}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0"th:text="${G47MT}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0"th:text="${G48MT}"></div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>Giải năm</td>
+									<td class="d-flex justify-content-center"th:text="${G5MT}"></td>
+								</tr>
+								<tr>
+									<td>Giải sáu</td>
+									<td class="d-flex justify-content-center">
+										<div class="row">
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G61MT}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G62MT}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G63MT}"></div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>Giải bảy</td>
+									<td class="d-flex justify-content-center"th:text="${G7MT}"></td>
+								</tr>
+								<tr>
+									<td>Giải tám</td>
+									<td class="d-flex justify-content-center"th:text="${G8MT}"></td>
+								</tr>
+
+							</tbody>
+
+						</table>
+
+	
+	<table class="table table-striped table-sm" th:if="${mien=='MB'}" >
+							<thead>
+								<tr>
+									<th>Tên giải</th>
+									<th class="d-flex justify-content-center">Kết quả XS</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Giải ĐB</td>
+									<td class="d-flex justify-content-center"th:text="${DBMB}"></td>
+								</tr>
+								<tr>
+									<td>Giải nhất</td>
+									<td class="d-flex justify-content-center"th:text="${G1MB}"></td>
+								</tr>
+								<tr>
+									<td>Giải nhì</td>
+									<td class="d-flex justify-content-center">
+										<div class="row d-flex">
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G21MB}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G22MB}"></div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>Giải ba</td>
+									<td class="d-flex justify-content-center">
+										<div class="row d-flex">
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G31MB}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G32MB}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G33MB}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G34MB}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G35MB}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G36MB}"></div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>Giải tư</td>
+									<td class="d-flex justify-content-center">
+										<div class="row">
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G41MB}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G42MB}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G43MB}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G44MB}"></div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>Giải năm</td>
+									<td class="d-flex justify-content-center">
+										<div class="row d-flex">
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G51MB}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G52MB}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G53MB}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G54MB}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G55MB}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G56MB}"></div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>Giải sáu</td>
+									<td class="d-flex justify-content-center">
+										<div class="row">
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G61MB}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G62MB}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G63MB}"></div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>Giải bảy</td>
+									<td class="d-flex justify-content-center">
+										<div class="row">
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G71MB}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G72MB}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G73MB}"></div>
+											<div class="col-sm-12 col-lg-1 mx-2 p-0 flex-fill"th:text="${G74MB}"></div>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+
+						</table>
+</body>
+</html>

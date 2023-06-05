@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div th:fragment="html_middle_login">
+		<div class="row d-flex justify-content-center align-items-center">
+			<div class="row">
+					<div class="text-center">
+						<h5 class="mt-1 mb-4 pb-1">Đại lý vé số HG kính chào</h5>
+					</div>
+
+					<form method="post" th:action="@{/loginpost}">
+						<div
+							class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+							<p class="lead fw-normal mb-0 me-3">Đằng nhập bằng</p>
+							<button type="button" class="btn btn-floating">
+								<img src="https://img.icons8.com/fluency/2x/facebook-new.png"
+									style="width: 20px;">
+							</button>
+
+							<button type="button" class="btn btn-floating">
+								<img src="https://img.icons8.com/3d-fluency/2x/gmail.png"
+									style="width: 20px;">
+							</button>
+
+						</div>
+
+						<div class="divider d-flex align-items-center my-4">
+							<p class="text-center fw-bold mx-3 mb-0">hoặc</p>
+						</div>
+						<div class="form-outline mb-2">
+							<label class="form-label">Tên đăng nhập</label> 
+							<input type="text" class="form-control" id="username" name="username" required />
+
+						</div>
+
+						<div class="form-outline mb-2">
+							<label class="form-label">Mật khẩu</label> 
+							<input type="password" class="form-control" id="password" name="password" required />
+
+						</div>
+
+						<div th:if="${show=='show'}" class="alert alert-warning"><span th:text="${message}"></span></div>
+
+						<div class="text-center pt-1 mb-2 pb-1">
+							<button	class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"	type="submit">Đăng nhập</button>
+							<button type="button" class="btn btn-link btn-sm" data-bs-toggle="modal" data-bs-target="#quenmatkhau">Quên	mật khẩu?</button>
+						</div>
+					</form>
+
+				</div>
+			</div>
+
+<!-- The Modal -->
+	<div class="modal" id="quenmatkhau">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form>
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h4 class="modal-title">Quên mật khẩu</h4>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					</div>
+
+					<!-- Modal body -->
+					<div class="modal-body">
+						<div class="form-outline mb-2">
+							<label class="form-label">Email đã đăng ký</label> <input
+								id="email" type="email" class="form-control" name="email"
+								required />
+						</div>
+						<div class="row" id="alert-reset"></div>
+					</div>
+
+					<!-- Modal footer -->
+					<div class="modal-footer">
+						<button id="btn-reset" class="btn btn-primary" type="button"
+							onclick="resetPass()">Reset mật khẩu</button>
+						<button type="button" class="btn btn-danger"
+							data-bs-dismiss="modal">Close</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+function resetPass()
+{	
+var email = $("#email").val();   
+                    $.ajax({
+                    url : "/SWP490JPA/reset-pass",
+                    type : "get",
+                    dataType:"text",
+                    data : {email                 
+                    },
+                    success : function (result){
+                    	$('#alert-reset').show();
+                        $('#alert-reset').html(result);
+                    }
+                });                                                                               
+}
+</script>
+	
+</body>
+</html>

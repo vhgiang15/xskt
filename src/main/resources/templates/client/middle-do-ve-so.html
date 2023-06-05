@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"	href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" type="text/css"	href="https://npmcdn.com/flatpickr/dist/themes/material_orange.css">
+<script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+</head>
+<body>
+	<div th:fragment="html_middle_doveso">
+		<div class="container-fluid mt-3">
+			<h6 class="doveso-header">DÒ VÉ XỔ SỐ 3 MIỀN</h6>
+			<ul>
+				<li>Chọn ngày muốn dò vé số XS</li>
+				<li>Chọn tỉnh</li>
+				<li>Nhập số trên tờ vé số</li>
+				<li>Click vào nút "Dò vé" để xem kết quả dò số trúng thưởng xổ
+					số 3 Miền</li>
+			</ul>
+			<form>
+				<div class="row">
+					<div class="col-sm-12 col-lg-4">
+						<label for="date">Ngày</label>
+						<div class="container-fluid">
+							<input id="mycal" class="form-control" name="date"
+								onchange="load_province()">
+						</div>
+					</div>
+
+					<div class="col-sm-12 col-lg-3">
+						<label for="tinh">Tỉnh</label>
+						<div class="container-fluid">
+							<select class='form-select' id='province'></select>
+							<div id="result"></div>
+						</div>
+
+					</div>
+
+					<div class="col-sm-12 col-lg-3">
+						<label for="sove">Số vé</label>
+						<div class="container-fluid">
+							<input type="text" maxlength="6" class="form-control" id="sove"
+								onkeypress="return isNumberKey(event)">
+						</div>
+					</div>
+					<div class="col-sm-12 col-lg-2">
+						<button id="btn-dove" type="button"
+							class="btn btn-primary btn-dove" onclick="tracuuvedo()">Dò
+							vé</button>
+					</div>
+				</div>
+			</form>
+			<div class="container-fluid mt-3" id="thongbaoketquado"></div>
+
+		</div>
+	</div>
+</body>
+</html>

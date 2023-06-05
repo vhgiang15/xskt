@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Đại lý vé số HG</title>
+</head>
+<body>
+
+	<div th:if="${mien=='MN'}">
+		<form action="/admin-update-ticket" method="post">
+			<h6 class="bg-kqxshq">Cập nhật kết quả Xổ số</h6>
+			<h6>Tỉnh: <span th:text="${province}"></span></h6>
+			<h6>Ngày: <span th:text="${date}"></span></h6>
+			<div class="row">
+				<div class="col-sm-12 col-lg-2">
+					<label>Giải đặc biệt</label>
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm" name="DBMN"
+						th:value="${DBMN}"> <input type="text"
+						class="form-control form-control-sm" name="idProvince"
+						th:value="${idProvince}" style="display: none"> <input
+						type="text" class="form-control form-control-sm" name="date"
+						th:value="${date}" style="display: none">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-lg-2">
+					<label>Giải nhất</label>
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm" name="G1MN"
+						th:value="${G1MN}">
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-lg-2">
+					<label>Giải nhì</label>
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm" name="G2MN"
+						th:value="${G2MN}">
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-lg-2">
+					<label>Giải ba</label>
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G31MN" th:value="${G31MN}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G32MN" th:value="${G32MN}">
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-lg-2">
+					<label>Giải tư</label>
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G41MN" th:value="${G41MN}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G42MN" th:value="${G42MN}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G43MN" th:value="${G43MN}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G44MN" th:value="${G44MN}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G45MN" th:value="${G45MN}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G46MN" th:value="${G46MN}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G47MN" th:value="${G47MN}">
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-lg-2">
+					<label>Giải năm</label>
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm" name="G5MN"
+						th:value="${G5MN}">
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-lg-2">
+					<label>Giải sáu</label>
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G61MN" th:value="${G61MN}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G62MN" th:value="${G62MN}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G63MN" th:value="${G63MN}">
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-lg-2">
+					<label>Giải bảy</label>
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm" name="G7MN"
+						th:value="${G7MN}">
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-lg-2">
+					<label>Giải tám</label>
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm" name="G8MN"
+						th:value="${G8MN}">
+				</div>
+
+			</div>
+			<button type="submit" class="btn btn-primary btn-dove">Cập nhật</button>
+		</form>
+</div>
+
+	<div th:if="${mien=='MT'}">
+		<form action="/admin-update-ticket" method="post">
+			<h6 class="bg-kqxshq">Cập nhật kết quả Xổ số</h6>
+			<h6>Tỉnh: <span th:text="${province}"></span></h6>
+			<h6>Ngày: <span th:text="${date}"></span></h6>
+			<div class="row">
+				<div class="col-sm-12 col-lg-2">
+					<label>Giải đặc biệt</label>
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm" name="DBMT"
+						th:value="${DBMT}"> <input type="text"
+						class="form-control form-control-sm" name="idProvince"
+						th:value="${idProvince}" style="display: none"> <input
+						type="text" class="form-control form-control-sm" name="date"
+						th:value="${date}" style="display: none">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-lg-2">
+					<label>Giải nhất</label>
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm" name="G1MT"
+						th:value="${G1MT}">
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-lg-2">
+					<label>Giải nhì</label>
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm" name="G2MT"
+						th:value="${G2MT}">
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-lg-2">
+					<label>Giải ba</label>
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G31MT" th:value="${G31MT}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G32MT" th:value="${G32MT}">
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-lg-2">
+					<label>Giải tư</label>
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G41MT" th:value="${G41MT}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G42MT" th:value="${G42MT}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G43MT" th:value="${G43MT}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G44MT" th:value="${G44MT}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G45MT" th:value="${G45MT}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G46MT" th:value="${G46MT}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G47MT" th:value="${G47MT}">
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-lg-2">
+					<label>Giải năm</label>
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm" name="G5MT"
+						th:value="${G5MT}">
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-lg-2">
+					<label>Giải sáu</label>
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G61MT" th:value="${G61MT}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G62MT" th:value="${G62MT}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G63MT" th:value="${G63MT}">
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-lg-2">
+					<label>Giải bảy</label>
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm" name="G7MT"
+						th:value="${G7MT}">
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-lg-2">
+					<label>Giải tám</label>
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm" name="G8MT"
+						th:value="${G8MT}">
+				</div>
+
+			</div>
+			<button type="submit" class="btn btn-primary btn-dove">Cập nhật</button>
+		</form>
+	</div>
+
+
+	<div th:if="${mien=='MB'}">
+		<form action="admin-update-ticket" method="post">
+			<h6 class="bg-kqxshq">Cập nhật kết quả Xổ số</h6>
+			<h6>Tỉnh: <span th:text="${province}"></span></h6>
+			<h6>Ngày: <span th:text="${date}"></span></h6>
+			<div class="row">
+				<div class="col-sm-12 col-lg-2">
+					<label>Giải đặc biệt</label>
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm" name="DBMB"
+						th:value="${DBMB}"> <input type="text"
+						class="form-control form-control-sm" name="idProvince"
+						th:value="${idProvince}" style="display: none"> <input
+						type="text" class="form-control form-control-sm" name="date"
+						th:value="${date}" style="display: none">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-lg-2">
+					<label>Giải nhất</label>
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm" name="G1MB"
+						th:value="${G1MB}">
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-lg-2">
+					<label>Giải nhì</label>
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G21MB" th:value="${G21MB}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G22MB" th:value="${G22MB}">
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-lg-2">
+					<label>Giải ba</label>
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G31MB" th:value="${G31MB}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G32MB" th:value="${G32MB}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G33MB" th:value="${G33MB}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G34MB" th:value="${G34MB}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G35MB" th:value="${G35MB}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G36MB" th:value="${G36MB}">
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-lg-2">
+					<label>Giải tư</label>
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G41MB" th:value="${G41MB}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G42MB" th:value="${G42MB}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G43MB" th:value="${G43MB}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G44MB" th:value="${G44MB}">
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-lg-2">
+					<label>Giải năm</label>
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G51MB" th:value="${G51MB}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G52MB" th:value="${G52MB}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G53MB" th:value="${G53MB}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G54MB" th:value="${G54MB}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G55MB" th:value="${G55MB}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G56MB" th:value="${G56MB}">
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-lg-2">
+					<label>Giải sáu</label>
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G61MB" th:value="${G61MB}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G62MB" th:value="${G62MB}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G63MB" th:value="${G63MB}">
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-lg-2">
+					<label>Giải bảy</label>
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G71MB" th:value="${G71MB}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G72MB" th:value="${G72MB}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G73MB" th:value="${G73MB}">
+				</div>
+				<div class="col-sm-12 col-lg-1 mx-2 p-0">
+					<input type="text" class="form-control form-control-sm"
+						name="G74MB" th:value="${G74MB}">
+				</div>
+
+			</div>
+
+			<button type="submit" class="btn btn-primary btn-dove">Cập nhật</button>
+		</form>
+	</div>
+
+
+
+
+</body>
+</html>

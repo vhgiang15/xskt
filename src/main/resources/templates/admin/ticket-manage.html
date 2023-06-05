@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Đại lý vé số HG</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" type="text/css"
+	href="https://npmcdn.com/flatpickr/dist/themes/material_orange.css">
+<script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="container">
+		<div th:replace="/admin/header :: html_header"></div>
+		<div class="row">
+			<div class="col-sm-2 admin-menu">
+				<div th:replace="/admin/admin-left-menu :: html_leftmenu_admin"></div>
+			</div>
+			<div class="col-sm-10">
+				<div class="row">
+					<ul class="nav nav-tabs">
+						<li class="nav-item"><a class=" nav-link tab-funtion active"
+							href="admin-ticket-manage">Quản lý vé dò</a></li>
+						<li class="nav-item"><a class="nav-link tab-funtion"
+							href="admin-form-add-ticket">Thêm mới</a></li>
+					</ul>
+				</div>
+
+				<div class="row">
+					<form action="" id="search-ticket" class="form-custom">
+						<div class="row">
+							<div class="col-sm-12 col-lg-3">
+								<label for="mien">Miền</label>
+								<div class="row">
+									<select class="form-select" id="sel1" name="sellist1"
+										onchange="areaChanged(this)">
+										<option>Chọn miền</option>
+										<option value="MN">Miền Nam</option>
+										<option value="MT">Miền Trung</option>
+										<option value="MB">Miền Bắc</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="col-sm-12 col-lg-3">
+								<label>Tên tỉnh</label> <select class='form-select'
+									id='province'></select>
+								<div class="row" id="resultProvince"></div>
+							</div>
+
+							<div class="col-sm-12 col-lg-2">
+								<label>Từ ngày</label> <input id="dateFrom" class="form-control" th:value="${dateFrom}"
+									name="dateFrom" required>
+							</div>
+							<div class="col-sm-12 col-lg-2">
+								<label>Đến ngày</label> <input id="dateTo" class="form-control"
+									name="dateTo" th:value="${dateTo}" required>
+							</div>
+
+							<div class="col-sm-12 col-lg-2">
+								<button type="button" id="btn-search"
+									class="btn btn-primary btn-dove" value="1"
+									onclick="searchticket(this)">Tìm kiếm</button>
+							</div>
+						</div>
+					</form>
+				</div>
+
+				<div class="alert alert-info alert-dismissible"
+					th:if="${show=='show'}">
+					<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+					<strong>Thông báo: </strong><span th:text="${message}"></span>
+				</div>
+
+				<div class="container mt-3">
+					<div class="row" id="resultSearch"></div>
+				</div>
+
+				<div class="container mt-3">
+					<div id="resultDetail"></div>
+				</div>
+
+				<div class="container mt-3">
+					<div id="updateForm"></div>
+				</div>
+			</div>
+		</div>
+
+<div th:replace="/admin/footer :: html_footer"></div>
+	</div>
+
+<script>
+$("#dashboard").removeClass("active");
+$("#user-manage").removeClass("active");
+$("#ticket-manage").addClass("active");
+$("#province-manage").removeClass("active");
+</script>
+<script>
+function areaChanged(obj)
+{	    var mien = obj.value;  
+        $("#province").hide();   
+                    $.ajax({
+                    url : "/xskt/admin-load-province",
+                    type : "get",
+                    dataType:"text",
+                    data : {mien                       
+                    },
+                    success : function (result){
+                        $('#resultProvince').html(result);
+                    }
+                });                                                                                 
+}
+</script>
+
+<script>
+function searchticket(obj)
+
+{	var idProvince = $("#provinceAdmin").val();
+	var dateFrom = $("#dateFrom").val();
+	var dateTo = $("#dateTo").val();
+	var page = obj.value; 
+	$("#resultDetail").hide();	
+    $("#province").hide();   
+                    $.ajax({
+                    url : "/xskt/admin-search-ticket",
+                    type : "get",
+                    dataType:"text",
+                    data : {idProvince,  dateFrom,  dateTo, page                   
+                    },
+                    success : function (result){
+                    	$("#updateForm").hide();
+                    	$('#resultSearch').show();
+                        $('#resultSearch').html(result);
+                    }
+                });                                                                                 
+}
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<script>
+flatpickr("#dateFrom", {
+dateFormat: "d-m-Y",
+});
+
+flatpickr("#dateTo", {
+dateFormat: "d-m-Y",
+});
+</script>
+
+<script>
+function detailTicket(id, dateo)
+{
+var idProvince=id;
+let dateKQXS=dateo.value; 
+                    $.ajax({
+                    url : "/SWP490JPA/admin-detail-KQXS",
+                    type : "get",
+                    dataType:"text",
+                    data : {idProvince,dateKQXS                 
+                    },
+                    success : function (result){
+                    $("#updateForm").hide();
+                    $("#resultDetail").show();
+                        $('#resultDetail').html(result);
+                    }
+                });
+
+}
+</script>
+</body>
+</html>

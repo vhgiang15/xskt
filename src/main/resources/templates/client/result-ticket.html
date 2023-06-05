@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+</head>
+<body>
+	<div class="bg-warning">
+
+		<p th:if="${tenGiaiThuong=='Không trúng giải'}">
+			Vé số <span th:text="${sove}"></span> của bạn <strong>không trúng thưởng,</strong> Chúc bạn
+			may mắn lần sau
+		</p>
+
+		<p th:if="${tenGiaiThuong!='Không trúng giải'}">
+			Xin chúc mừng vé số <span th:text="${sove}"></span> của bạn đã trúng <strong>
+				<span th:text="${tenGiaiThuong}"></span> trị giá <span th:text="${giaTri}"></span> </strong>
+		</p>
+	</div>
+
+	<h4 class="modal-title">KQXS <span th:text="${province}"></span> ngày <span th:text="${date}"></span></h4>
+
+		<table class="table table-striped table-sm table-bordered" th:if="${mien=='MN'}">
+			<thead class="table-info">
+				<tr>
+					<th style="width: 120px">Tên giải</th>
+					<th>Kết quả XS</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><h6>Giải ĐB</h6></td>
+					<td><h6 th:text="${DBMN}"></h6></td>
+				</tr>
+				<tr>
+					<td><h6>Giải nhất</h6></td>
+					<td><h6 th:text="${G1MN}"></h6></td>
+				</tr>
+				<tr>
+
+					<td><h6>Giải nhì</h6></td>
+					<td><h6 th:text="${G2MN}"></h6></td>
+				</tr>
+				<tr>
+					<td><h6>Giải ba</h6></td>
+					<td>
+						<div class="row d-flex">
+							<div class="col-*-12">
+								<h6 th:text="${G31MN}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G32MN}"></h6>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><h6>Giải tư</h6></td>
+					<td>
+						<div class="row">
+							<div class="col-*-12">
+								<h6 th:text="${G41MN}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G42MN}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G43MN}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G44MN0}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G45MN}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G46MN}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G47MN}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G48MN}"></h6>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><h6>Giải năm</h6></td>
+					<td><h6 th:text="${G5MN}"></h6></td>
+				</tr>
+				<tr>
+					<td><h6>Giải sáu</h6></td>
+					<td>
+						<div class="row">
+							<div class="col-*-12">
+								<h6 th:text="${G61MN}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G62MN}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G63MN}"></h6>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><h6>Giải bảy</h6></td>
+					<td><h6 th:text="${G7MN}"></h6></td>
+				</tr>
+				<tr>
+					<td><h6>Giải tám</h6></td>
+					<td><h6 th:text="${G8MN}"></h6></td>
+				</tr>
+			</tbody>
+		</table>
+
+
+
+		<table class="table table-striped table-sm table-bordered" th:if="${mien=='MT'}">
+			<thead class="table-info">
+				<tr>
+					<th style="width: 120px">Tên giải</th>
+					<th>Kết quả XS</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><h6>Giải ĐB</h6></td>
+					<td><h6 th:text="${DBMT}"></h6></td>
+				</tr>
+				<tr>
+					<td><h6>Giải nhất</h6></td>
+					<td><h6 th:text="${G1MT}"></h6></td>
+				</tr>
+				<tr>
+
+					<td><h6>Giải nhì</h6></td>
+					<td><h6 th:text="${G2MT}"></h6></td>
+				</tr>
+				<tr>
+					<td><h6>Giải ba</h6></td>
+					<td>
+						<div class="row d-flex">
+							<div class="col-*-12">
+								<h6 th:text="${G31MT}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G32MT}"></h6>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><h6>Giải tư</h6></td>
+					<td>
+						<div class="row">
+							<div class="col-*-12">
+								<h6 th:text="${G41MT}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G42MT}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G43MT}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G44MT0}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G45MT}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G46MT}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G47MT}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G48MT}"></h6>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><h6>Giải năm</h6></td>
+					<td><h6 th:text="${G5MT}"></h6></td>
+				</tr>
+				<tr>
+					<td><h6>Giải sáu</h6></td>
+					<td>
+						<div class="row">
+							<div class="col-*-12">
+								<h6 th:text="${G61MT}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G62MT}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G63MT}"></h6>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><h6>Giải bảy</h6></td>
+					<td><h6 th:text="${G7MT}"></h6></td>
+				</tr>
+				<tr>
+					<td><h6>Giải tám</h6></td>
+					<td><h6 th:text="${G8MT}"></h6></td>
+				</tr>
+			</tbody>
+		</table>
+	
+	
+	
+		<table class="table table-striped table-sm table-bordered" th:if="${mien=='MB'}">
+			<thead class="table-info">
+				<tr>
+					<th><h6>Tên giải</h6></th>
+					<th>Kết quả XS</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><h6>Giải ĐB</h6></td>
+					<td><h6 th:text="${DBMB}"></h6></td>
+				</tr>
+				<tr>
+					<td><h6>Giải nhất</h6></td>
+					<td><h6 th:text="${G1MB}"></h6></td>
+				</tr>
+				<tr>
+					<td><h6>Giải nhì</h6></td>
+					<td>
+						<div class="row d-flex">
+							<div class="col-*-12">
+								<h6 th:text="${G21MB}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G22MB}"></h6>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><h6>Giải ba</h6></td>
+					<td>
+						<div class="row d-flex">
+							<div class="col-*-12">
+								<h6 th:text="${G31MB0}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G32MB}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G33MB}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G34MB}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G35MB}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G36MB}"></h6>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><h6>Giải tư</h6></td>
+					<td>
+						<div class="row">
+							<div class="col-*-12">
+								<h6 th:text="${G41MB}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G42MB}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G43MB}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G44MB}"></h6>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><h6>Giải năm</h6></td>
+					<td>
+						<div class="row">
+							<div class="col-*-12">
+								<h6 th:text="${G51MB}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G52MB}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G53MB}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G54MB}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G55MB}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G56MB}"></h6>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><h6>Giải sáu</h6></td>
+					<td>
+						<div class="row">
+							<div class="col-*-12">
+								<h6 th:text="${G61MB}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G62MB}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G63MB}"></h6>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><h6>Giải bảy</h6></td>
+					<td>
+						<div class="row">
+							<div class="col-*-12">
+								<h6 th:text="${G71MB}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G72MB}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G73MB}"></h6>
+							</div>
+							<div class="col-*-12">
+								<h6 th:text="${G74MB}"></h6>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+</body>
+</html>

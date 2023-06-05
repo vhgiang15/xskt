@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Đại lý vé số HG</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+<link th:href="@{/css/style.css}" rel="stylesheet"/>
+</head>
+<body>
+	<div th:fragment="html_header">
+		<div class="offcanvas offcanvas-start offcanvas-lg" id="demo"
+			style="width: 350px; height: 600px">
+			<div class="offcanvas-header">
+				<h6 class="offcanvas-title">Danh sách tỉnh</h6>
+				<button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+			</div>
+			<div class="offcanvas-body mt-0 pt-0">
+				<table class="table table-striped table-sm table-bordered">
+					<thead class="table-info">
+						<tr>
+							<td>Miền Nam</td>
+							<td>Miền Trung</td>
+							<td>Miền Bắc</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<ul class="m-0 p-0" style="list-style-type: none">
+									<li th:each="o: ${listProvinceMN}"><a
+										th:href="@{/xskt/{id}(id=${o.idProvince})}"
+										th:text="${o.nameProvince}">Tên tỉnh</a></li>
+								</ul>
+							</td>
+							<td>
+								<ul class="m-0 p-0" style="list-style-type: none">
+									<li th:each="o: ${listProvinceMT}"><a
+										th:href="@{/xskt/{id}(id=${o.idProvince})}"
+										th:text="${o.nameProvince}">Tên tỉnh</a></li>
+
+								</ul>
+
+							</td>
+							<td>
+								<ul class="m-0 p-0" style="list-style-type: none">
+									<li th:each="o: ${listProvinceMb}"><a
+										th:href="@{/xskt/{id}(id=${o.idProvince})}"
+										th:text="${o.nameProvince}">Tên tỉnh</a></li>
+								</ul>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<img class="height-banner" src="/media/bannerweb.gif">
+			<nav id="menu-container">
+				<div id="btn-nav-previous">
+					<i class='fas fa-angle-left'></i>
+				</div>
+				<div id="btn-nav-next">
+					<i class='fas fa-angle-right'></i>
+				</div>
+
+				<div class="menu-inner-box">
+					<div class="menu">
+						<a class="menu-item" th:href="@{/index}" style="padding-left: 40px; color: white"><i class='fas fa-home' style='font-size: 20px; color: white'></i></a> 
+						<a id="danh-sach-tinh" class="menu-item d-md-none" href="#"	data-bs-toggle="offcanvas" data-bs-target="#demo">DS TỈNH</a> 
+						<a class="menu-item" th:href="@{/gioithieu}">GIỚI THIỆU</a> 
+						<a class="menu-item" th:href="@{/do-ve-so}">DÒ VÉ SỐ</a> 
+						<span th:unless="${userName=='guest'}"><a class="menu-item" th:href="@{/user-lich-su-do}">LỊCH SỬ DÒ</a></span> 
+						<a class="menu-item" th:href="@{/co-cau-giai}">CƠ CẤU GIẢI</a> 
+							<span th:if="${userName=='guest'}"> 
+							<a href="#form-dang-ky" class="menu-item" data-bs-toggle="modal" data-bs-target="#form-dang-ky">ĐĂNG KÝ</a> 
+							<a	th:href="@{/admin-list-province}" style="padding-right: 40px" class="menu-item">ĐĂNG NHẬP</a>
+							</span> 
+						<a th:unless="${userName=='guest'}" href="#"
+							class="menu-item dropdown-toggle" style="padding-right: 40px"
+							role="button" data-bs-toggle="dropdown">CHÀO <span
+							th:text="${userName}"></span></a>
+						<ul class="dropdown-menu p-0 m-0" style="background: gray">
+							<li><a class="dropdown-item p-0 m-0"
+								style="width: 100%; font-size: 13px" href="#"
+								data-bs-toggle="modal" data-bs-target="#form-doi-mat-khau">Đổi mật khẩu</a></li>
+							<li><a class="dropdown-item p-0 m-0"
+								style="width: 100%; font-size: 13px" th:href="@{/logout}">Thoát</a></li>
+						</ul>
+
+
+					</div>
+				</div>
+
+			</nav>
+		</div>
+
+		<!-- The Modal đăng ky-->
+		<div class="modal" id="form-dang-ky">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h5 class="mt-1 mb-2 pb-1">Đại lý vé số HG kính chào</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					</div>
+					<!-- Modal body -->
+					<div class="modal-body">
+						<form action="#">
+							<div class="form-outline mb-2">
+								<label class="form-label" for="form2Example11">Họ tên</label> <input
+									id="fullname" type="text" class="form-control" name="fullName"
+									required />
+							</div>
+
+							<div class="form-outline mb-2">
+								<label class="form-label" for="form2Example11">Tên đăng
+									nhập</label> <input id="userform" type="text" class="form-control"
+									name="userForm" required />
+
+							</div>
+
+							<div class="form-outline mb-2">
+								<label class="form-label" for="form2Example11">Số điện
+									thoại</label> <input id="phoneform" type="text" class="form-control"
+									name="phone" required />
+
+							</div>
+
+							<div class="form-outline mb-2">
+								<label class="form-label" for="form2Example11">Email</label> <input
+									id="emailform" type="email" class="form-control" name="mail"
+									required />
+							</div>
+							<div class="text-center pt-1 mb-3 pb-1">
+								<button class="btn btn-primary" type="button"
+									onclick="registerinfo()">Đăng ký</button>
+							</div>
+							<div class="d-flex align-items-center justify-content-center">
+								<p class="mb-0 me-2">
+									Đã có tài khoản!
+									<button type="button" class="btn btn-outline-danger"
+										onclick="location.href='login-form';">Đăng nhập</button>
+							</div>
+						</form>
+						<div class="row" id="alert-register"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- The Modal đổi mật khẩu-->
+		<div class="modal" id="form-doi-mat-khau">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<form>
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<h4 class="modal-title">Đổi mật khẩu</h4>
+							<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+						</div>
+
+						<!-- Modal body -->
+						<div class="modal-body">
+							<div class="form-outline mb-2">
+								<label class="form-label">Mật khẩu cũ</label> <input
+									id="oldpass" type="password" class="form-control" required />
+							</div>
+
+							<div class="form-outline mb-2">
+								<label class="form-label">Mật khẩu mới</label> <input
+									id="newpass" onkeyup="trigger(this)" type="password"
+									class="form-control" required />
+							</div>
+
+							<div class="form-outline mb-2">
+								<label class="form-label">Xác nhận mật khẩu</label> <input
+									id="conwpass" type="password" class="form-control" required />
+							</div>
+							<div class="row" id="text"></div>
+							<div class="row" id="alert-change-pass"></div>
+						</div>
+
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<button id="btn-doipass" class="btn btn-primary disabled"
+								type="button" onclick="changePass()">Thay đổi mật khẩu</button>
+							<button type="button" class="btn btn-danger"
+								data-bs-dismiss="modal">Close</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div th:fragment="html_footer">
+		<div class="row bg-footer">
+			<h6>ĐẠI LÝ VÉ SỐ TUẤN KHANH - HỆ THỐNG TRỰC TUYẾN KẾT QUẢ XỔ SỐ</h6>
+			<p>Đại lý vé số HG, tra cứu kết quả xổ số nhanh chóng, kết quả
+				chính xác, cung cấp sỉ và lẻ vé số, đổi số trúng các tỉnh miền Nam</p>
+			<p>191 Nguyễn Thị Minh Khai Thành Phố Sóc Trăng Tỉnh Sóc Trăng
+				Việt Nam</p>
+			<p>Phone: 0983.365.465</p>
+			<p>E-mail: vhgiang15@gmail.com</p>
+		</div>
+	</div>
+
+	<div th:fragment="html_left_silde">
+		<div class="accordion" id="accordionFlushExample">
+			<div class="accordion-item">
+				<h3 class="accordion-header" id="flush-headingOne">
+					<button class="accordion-button collapsed btn-menu btn-cus"
+						style="color: white" type="button" data-bs-toggle="collapse"
+						data-bs-target="#flush-collapseOne" aria-expanded="true"
+						aria-controls="flush-collapseOne">XSKT MIỀN NAM</button>
+				</h3>
+				<div id="flush-collapseOne"
+					class="accordion-collapse collapse" th:classappend ="${showMN=='show'} ? show : none"
+					aria-labelledby="flush-headingOne"
+					data-bs-parent="#accordionFlushExample">
+					<div class="accordion-body">
+						<ul class="m-0 p-0">
+							<li th:each="o : ${listProvinceMN}"><a
+								th:href="@{/xskt/{id}(id=${o.idProvince})}"
+								th:text="${o.nameProvince}"></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<h6 class="accordion-header" id="flush-headingTwo">
+					<button class="accordion-button collapsed btn-menu btn-cus"
+						style="color: white" type="button" data-bs-toggle="collapse"
+						data-bs-target="#flush-collapseTwo" aria-expanded="false"
+						aria-controls="flush-collapseTwo">XSKT MIỀN TRUNG</button>
+				</h6>
+				<div id="flush-collapseTwo"
+					class="accordion-collapse collapse" th:classappend ="${showMT=='show'} ? show : none"
+					aria-labelledby="flush-headingTwo"
+					data-bs-parent="#accordionFlushExample">
+					<div class="accordion-body">
+						<ul class="m-0 p-0">
+							<li th:each="o: ${listProvinceMT}"><a
+								th:href="@{/xskt/{id}(id=${o.idProvince})}"
+								th:text="${o.nameProvince}"></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="accordion-item">
+				<h3 class="accordion-header" id="flush-headingThree">
+					<button class="accordion-button collapsed btn-menu btn-cus"
+						style="color: white" type="button" data-bs-toggle="collapse"
+						data-bs-target="#flush-collapseThree" aria-expanded="false"
+						aria-controls="flush-collapseThree">XSKT MIỀN BẮC</button>
+				</h3>
+				<div id="flush-collapseThree"
+					class="accordion-collapse collapse" th:classappend ="${showMB=='show'} ? show : none"
+					aria-labelledby="flush-headingThree"
+					data-bs-parent="#accordionFlushExample">
+					<div class="accordion-body">
+						<ul class="m-0 p-0">
+							<li th:each="o: ${listProvinceMB}"><a
+								th:href="@{/xskt/{id}(id=${o.idProvince})}"
+								th:text="${o.nameProvince}"></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:fragment="html_right_silde">
+		<div>
+			<div class="container-fluid mt-3">
+				<h6 class="doveso-header">LỊCH XỔ SỐ 3 MIỀN</h6>
+				<table class="table table-striped table-sm table-bordered">
+					<thead>
+						<tr>
+							<th>Thứ</th>
+							<th>Miền Nam</th>
+							<th>Miền Trung</th>
+							<th>Miền Bắc</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>T2</td>
+							<td>
+								<ul class="list-lich">
+									<li>HCM</li>
+									<li>Đồng Tháp</li>
+									<li>Cà Mau</li>
+								</ul>
+
+							</td>
+							<td>
+								<ul class="list-lich">
+									<li>Huế</li>
+									<li>Phú Yên</li>
+								</ul>
+							</td>
+							<td>
+								<ul class="list-lich">
+									<li>Hà Nội</li>
+								</ul>
+
+							</td>
+						</tr>
+						<tr>
+							<td>T3</td>
+							<td>
+								<ul class="list-lich">
+									<li>Bến Tre</li>
+									<li>Vũng Tàu</li>
+									<li>Bạc Liêu</li>
+								</ul>
+							</td>
+							<td>
+								<ul class="list-lich">
+									<li>Đắk Lắk</li>
+									<li>Quảng Nam</li>
+								</ul>
+							</td>
+							<td>
+								<ul class="list-lich">
+									<li>Quảng Ninh</li>
+								</ul>
+
+							</td>
+						</tr>
+						<tr>
+							<td>T4</td>
+							<td>
+								<ul class="list-lich">
+									<li>Đồng Nai</li>
+									<li>Cần Thơ</li>
+									<li>Sóc Trăng</li>
+								</ul>
+							</td>
+							<td>
+								<ul class="list-lich">
+									<li>Đà Nẵng</li>
+									<li>Khánh Hòa</li>
+								</ul>
+
+							</td>
+							<td>
+								<ul class="list-lich">
+									<li>Bắc Ninh</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<td>T5</td>
+							<td>
+
+								<ul class="list-lich">
+									<li>Tây Ninh</li>
+									<li>An Giang</li>
+									<li>Bình Thuận</li>
+								</ul>
+							</td>
+							<td>
+								<ul class="list-lich">
+									<li>Bình Định</li>
+									<li>Quảng Trị</li>
+									<li>Quảng Bình</li>
+								</ul>
+
+							</td>
+							<td>
+								<ul class="list-lich">
+									<li>Hà Nội</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<td>T6</td>
+							<td>
+								<ul class="list-lich">
+									<li>Vĩnh Long</li>
+									<li>Bình Dương</li>
+									<li>Trà Vinh</li>
+								</ul>
+							</td>
+							<td>
+								<ul class="list-lich">
+									<li>Gia Lai</li>
+									<li>Ninh Thuận</li>
+								</ul>
+
+							</td>
+							<td>
+								<ul class="list-lich">
+									<li>Hải Phòng</li>
+								</ul>
+
+
+							</td>
+						</tr>
+						<tr>
+							<td>T7</td>
+							<td>
+								<ul class="list-lich">
+									<li>HCM</li>
+									<li>Long An</li>
+									<li>Bình Phước</li>
+									<li>Hậu Giang</li>
+								</ul>
+							</td>
+							<td>
+								<ul class="list-lich">
+									<li>Đà Nẵng</li>
+									<li>Quãng Ngãi</li>
+									<li>Đắk Nông</li>
+								</ul>
+							</td>
+							<td>
+								<ul class="list-lich">
+									<li>Nam Định</li>
+								</ul>
+
+							</td>
+						</tr>
+						<tr>
+							<td>CN</td>
+							<td>
+								<ul class="list-lich">
+									<li>Tiền Giang</li>
+									<li>Kiên Giang</li>
+									<li>Đà Lạt</li>
+								</ul>
+							</td>
+							<td>
+								<ul class="list-lich">
+									<li>Khánh Hòa</li>
+									<li>Kon Tum</li>
+									<li>Huế</li>
+								</ul>
+							</td>
+							<td>
+								<ul class="list-lich">
+									<li>Thái Bình</li>
+								</ul>
+
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

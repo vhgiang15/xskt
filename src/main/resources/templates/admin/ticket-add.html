@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+<meta charset="UTF-8">
+<title>Đại lý vé số HG</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+
+<link rel="stylesheet" type="text/css"	href="https://www.minhngoc.net.vn/style/bangketqua_mini.css" />
+<script src="https://www.minhngoc.net.vn/jquery/jquery-1.7.2.js"></script>
+<script> bgcolor="#ffd500";titlecolor="#b50606";dbcolor="#0000c2";fsize="14px"; kqwidth="100%"; </script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="container">
+	<div th:replace="/admin/header :: html_header"></div>
+		<div class="row">
+			<div class="col-sm-2 admin-menu">
+				<div th:replace="/admin/admin-left-menu :: html_leftmenu_admin"></div>
+			</div>
+			<div class="col-sm-10">
+			<div class="row">
+				<ul class="nav nav-tabs">
+					<li class="nav-item"><a class=" nav-link tab-funtion"
+						href="admin-ticket-manage">Quản lý vé dò</a></li>
+					<li class="nav-item"><a class="nav-link tab-funtion active"
+						href="admin-form-add-ticket">Thêm mới</a></li>
+				</ul>
+				</div>
+				<div class="row" style="height: 20px"></div>
+				<div class="row">
+				<form action="update-ketqua" method="post">
+					<div id="box_kqxs_minhngoc"></div>
+					<script src="https://www.minhngoc.net.vn/getkqxs/an-giang.js"></script>
+				</form>
+				</div>
+				
+				<button id="save-ticket" class="btn btn-primary" >Lưu kết quả Xổ Số</button>	
+				
+				<div class="row" id="result"></div>
+				
+			</div>
+		</div>
+	<div th:replace="/admin/footer :: html_footer"></div>
+	</div>
+
+
+
+<script>
+$("#user-manage").removeClass("active");
+$("#ticket-manage").addClass("active");
+$("#province-manage").removeClass("active");
+</script>
+
+<script>
+$(document).ready(function(){
+  $("#save-ticket").click(function()
+  { var title=$(".title").text().trim();
+  	var thu=$(".thu").text().trim();
+ 	var ngay=$(".ngay").text().trim().replaceAll("-","");
+  	var giaidb=$(".giaidb").text().trim();
+  	var giai1=$(".giai1").text().trim();
+  	var giai2=$(".giai2").text().trim();
+  	var giai3=$(".giai3").text().trim();
+  	var giai4=$(".giai4").text().trim();
+  	var giai5=$(".giai5").text().trim();
+  	var giai6=$(".giai6").text().trim();
+  	var giai7=$(".giai7").text().trim();
+  	var giai8=$(".giai8").text().trim();
+  	var data= title+"-"+thu +"-"+ngay+"-"+giaidb +"-" +giai1 +"-" + giai2 +"-"+ giai3 +"-" + giai4+"-"+giai5+"-"+giai6+"-"+giai7+"-"+giai8;
+                    $.ajax({
+                    url : "/xskt/admin-save-ticket",
+                    type : "get",
+                    dataType:"text",
+                    data : {data                     
+                    },
+                    success : function (result){
+                        $('#result').html(result);
+                    }
+                });
+  });
+});
+</script>
+
+
+</body>
+</html>

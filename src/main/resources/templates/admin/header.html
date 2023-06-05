@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div th:fragment="html_header">
+	<div class="row">
+		<img class="height-banner" src="media/bannerweb.gif">
+		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+			<div class="container-fluid">
+				<div class="collapse navbar-collapse">
+					<p>User có quyền Admin</p>
+				</div>
+			</div>
+			<div class="collapse navbar-collapse" id="collapsibleNavbar">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link" data-bs-toggle="modal" data-bs-target="#myModal">Đổi mật khẩu</a></li>
+				</ul>
+			</div>
+		</nav>
+
+	</div>
+
+	<!-- The Modal -->
+	<div class="modal" id="myModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form>
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h4 class="modal-title">Đổi mật khẩu</h4>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					</div>
+
+					<!-- Modal body -->
+					<div class="modal-body">
+						<div class="form-outline mb-2">
+							<label class="form-label">Mật khẩu cũ</label> <input id="oldpass"
+								type="password" class="form-control" required />
+						</div>
+						
+						<div class="form-outline mb-2">
+							<label class="form-label">Mật khẩu mới</label> <input id="newpass" onkeyup="trigger(this)" type="password" class="form-control" required />
+						</div>
+						
+						<div class="form-outline mb-2">
+							<label class="form-label">Xác nhận mật khẩu</label> <input id="conwpass" type="password" class="form-control" required />
+						</div>
+						<div class="row" id="text"></div>
+						<div class="row" id="alert"></div>
+					</div>
+
+					<!-- Modal footer -->
+					<div class="modal-footer">
+						<button id="btn-doipass" class="btn btn-primary disabled" type="button"	onclick="changePass()">Thay đổi mật khẩu</button>
+						<button type="button" class="btn btn-danger"
+							data-bs-dismiss="modal">Close</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	</div>
+	
+<script>
+function trigger(obj){
+     let regExpWeak = /[a-z]/;
+     let regExpMedium = /\d+/;
+     let regExpStrong = /.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/;
+     let stringPass=obj.value;
+     
+     if(stringPass.length <= 3 && (stringPass.match(regExpWeak) || stringPass.match(regExpMedium) || stringPass.match(regExpStrong))) 
+     {	$("#text").html("Mật khẩu yếu");
+     	$("#btn-doipass").addClass("disabled");
+     }
+     if(stringPass.length >= 6 && ((stringPass.match(regExpWeak) && stringPass.match(regExpMedium)) || (stringPass.match(regExpMedium) && stringPass.match(regExpStrong)) || (stringPass.match(regExpWeak) && stringPass.match(regExpStrong))))
+      {	$("#text").html("Mật khẩu trung bình");
+      	$("#btn-doipass").removeClass("disabled");   
+      }
+     if(stringPass.length >= 6 && stringPass.match(regExpWeak) && stringPass.match(regExpMedium) && stringPass.match(regExpStrong))
+     	{	$("#text").html("Mật khẩu mạnh");
+     		$("#btn-doipass").removeClass("disabled");
+     	}
+}
+</script>
+
+<script>
+function changePass()
+{
+var oldPass=$("#oldpass").val();  
+var newPass=$("#newpass").val(); 
+var conPass=$("#conwpass").val(); 
+$.ajax({
+         url : "/SWP490JPA/change-pass",
+         type : "get",
+         dataType:"text",
+         data : {oldPass,newPass,conPass                
+                 },
+         success : function (result){
+         $('#alert').html(result);
+                    }
+}); 
+}  
+</script>	
+</body>
+</html>

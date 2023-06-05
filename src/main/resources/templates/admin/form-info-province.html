@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Đại lý vé số HG</title>
+</head>
+<body>
+	<div class="container mt-10" id="form-update-province">
+		<h6 class="bg-kqxshq">Cập nhật thông tin tỉnh</h6>
+		<form action="/admin-update-province" method="post">
+			<div class="row">
+				<div class="col-sm-12 col-lg-2">
+					<label for="name-province">Tên tỉnh</label>
+					<p th:text="${province.nameProvince}"></p>
+					<input type="text" name="idProvince" th:value="${province.idProvince}" style="display:none">		
+				</div>
+
+				<div class="col-sm-12 col-lg-2">
+					<label for="mien">Trạng thái</label>
+					<div class="row">
+						<select class="form-select" name="available" id="available">
+							<option value="Enable">Enable</option>
+							<option value="Disable">Disable</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-12 col-lg-6">
+					<label for="mien">Ngày xổ số trong tuần</label>
+					<div class="row">
+						<div class="col-sm-12">
+							<input type="checkbox" class="form-check-input" id="T2"
+								name="thu" value="T2"> <label
+								class="form-check-label mg-right" for="check1">T2</label> 
+								
+							<input
+								type="checkbox" class="form-check-input" id="T3" name="thu"
+								value="T3"> <label class="form-check-label mg-right"
+								for="check1">T3</label> <input type="checkbox"
+								class="form-check-input" id="T4" name="thu" value="T4">
+							<label class="form-check-label mg-right" for="check1">T4</label>
+							<input type="checkbox" class="form-check-input" id="T5"
+								name="thu" value="T5"> <label
+								class="form-check-label mg-right" for="check1">T5</label> <input
+								type="checkbox" class="form-check-input" id="T6" name="thu"
+								value="T6"> <label class="form-check-label mg-right"
+								for="check1">T6</label> <input type="checkbox"
+								class="form-check-input" id="T7" name="thu" value="T7">
+							<label class="form-check-label mg-right" for="check1">T7</label>
+							<input type="checkbox" class="form-check-input" id="CN"
+								name="thu" value="CN"> <label
+								class="form-check-label mg-right" for="check1">CN</label>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12 col-lg-2">
+					<button type="submit" class="btn btn-primary btn-dove">Cập nhật</button>
+				</div>
+			</div>
+		</form>	
+	</div>
+</body>
+</html>

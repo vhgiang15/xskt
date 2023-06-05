@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Dashboard</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" type="text/css"
+	href="https://npmcdn.com/flatpickr/dist/themes/material_orange.css">
+<script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link th:href="@{/css/style.css}" rel="stylesheet"/>
+</head>
+<body>
+	<div class="container">
+		<div th:replace="/admin/header :: html_header"></div>
+		<div class="row">
+			<div class="col-sm-2 admin-menu">
+				<div th:replace="/admin/admin-left-menu :: html_leftmenu_admin"></div>
+			</div>
+			<div class="col-sm-10">
+				<!-- Content Row -->
+				<div class="row">
+					<div class="col-xl-4 col-md-6 mb-4">
+						<div class="card border-left-primary shadow h-100 py-2">
+							<div class="card-body">
+								<div class="row no-gutters align-items-center">
+									<div class="col mr-2">
+										<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tổng user: <span th:text="${totalUser}"></span> </div>
+										<div class="h6 mb-0 font-weight-bold text-gray-800">Active: <span th:text="${countUserEnable}"></span></div>
+										<div class="h6 mb-0 font-weight-bold text-gray-800">Disable: <span th:text="${countUserDisable}"></span> </div>
+									</div>
+									<div class="col-auto">
+										<i class="fas fa-users fa-2x text-gray-300"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-xl-4 col-md-6 mb-4">
+						<div class="card border-left-success shadow h-100 py-2">
+							<div class="card-body">
+								<div class="row no-gutters align-items-center">
+									<div class="col mr-2">
+										<div
+											class="text-xs font-weight-bold text-success text-uppercase mb-1">
+											SL tỉnh hôm nay XS: <span th:text="${countProvinceToday}"></span></div>
+										<div class="h6 mb-0 font-weight-bold text-gray-800">Đã có KQXS: <span th:text="${countKQXSToday}"></span> </div>
+										<div class="h6 mb-0 font-weight-bold text-gray-800">Chưa có KQXS: <span th:text="${countNoneKQXSToday}"></span></div>
+									</div>
+									<div class="col-auto">
+										<i class="fas fa-calendar-check fa-2x text-gray-300"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="col-xl-4 col-md-6 mb-4">
+						<div class="card border-left-info shadow h-100 py-2">
+							<div class="card-body">
+								<div class="row no-gutters align-items-center">
+									<div class="col mr-2">
+										<div
+											class="text-xs font-weight-bold text-info text-uppercase mb-1">SL tỉnh hôm qua XS: <span th:text="${countProvinceYesterday}"></span> </div>
+										<div class="row no-gutters align-items-center">
+											<div class="col-auto">
+												<div class="h6 mb-0 mr-3 font-weight-bold text-gray-800">Đã có KQXS:  <span th:text="${countKQSXyesterday}"></span> </div>
+												<div class="h6 mb-0 mr-3 font-weight-bold text-gray-800">Chưa có KQXS:  <span th:text="${countNoneKQSXyesterday}"></span> </div>
+											</div>
+										</div>
+									</div>
+									<div class="col-auto">
+										<i class="fas fa-calendar-check fa-2x text-gray-300"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Bieu do tron -->
+				<div class="row">
+					<div class="col-md-6">
+						<div class="card shadow mb-4 p-0 tes1">
+							<div class="card-body">
+								<div class="col-*-6 no-gutters align-items-center">
+									<div class="col mr-2">
+										<div id="piechart_province"
+											style="width: 100%; height: 300px;"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+										<div class="col-md-6">
+						<div class="card shadow mb-4 p-0 tes1">
+							<div class="card-body">
+								<div class="col-*-6 no-gutters align-items-center">
+									<div class="col mr-2">
+										<div id="piechart_status_province"
+											style="width: 100%; height: 300px;"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+		<div th:replace="/admin/footer :: html_footer"></div>
+		
+		<div style="display:none">
+		<div id="mn" th:text="${countProvinceMN}"></div>
+		<div id="mt" th:text="${countProvinceMT}"></div>
+		<div id="mb" th:text="${countProvinceMB}"></div>
+		<div id="provinceEnable" th:text="${provinceEnable}"></div>
+		<div id="provinceDisable" th:text="${provinceDisable}"></div>
+		</div>	
+	</div>
+	<script>
+$("#dashboard").addClass("active");
+$("#user-manage").removeClass("active");
+$("#ticket-manage").removeClass("active");
+$("#province-manage").removeClass("active");
+</script>
+
+
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      let mn=Number($("#mn").text()); 
+      let mt=Number($("#mt").text());
+      let mb=Number($("#mb").text());
+      function drawChart() {
+       var data = new google.visualization.DataTable();
+        data.addColumn('string');
+        data.addColumn('number');
+        data.addRows([
+          ['Miền Nam',mn],
+          ['Miền Trung',mt],
+          ['Miền Bắc', mb],
+        ]);
+        var options = {
+          title: 'Các tỉnh tham gia Xổ số',
+          is3D: true,
+          pieSliceText: 'value',
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_province'));
+        chart.draw(data, options);      
+      }
+    </script>
+<script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      let enable=Number($("#provinceEnable").text()); 
+      let disable=Number($("#provinceDisable").text()); 
+      function drawChart() {
+       var data = new google.visualization.DataTable();
+        data.addColumn('string');
+        data.addColumn('number');
+        data.addRows([
+          ['Enable',enable],
+          ['Disable',disable],
+        ]);
+        var options = {
+          title: 'Trạng thái các tỉnh',
+          is3D: true,
+          pieSliceText: 'value',
+        };       
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_status_province'));
+        chart.draw(data, options);      
+      }
+    </script>
+</body>
+</html>
+
+
+
+
+
