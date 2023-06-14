@@ -211,11 +211,9 @@ public class AccountController {
 			msg.setSentDate(new Date());
 			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailObject.getEmailTo(), false));
 			Transport.send(msg);
-			model.addObject("show", "show");
 			model.addObject("message", "Mật khẩu mới đã gửi vào email");
 			return model;
 		} else {
-			model.addObject("show", "show");
 			model.addObject("message", "Email không tồn tại");
 			return model;
 		}
