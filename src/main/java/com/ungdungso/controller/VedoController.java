@@ -1,18 +1,14 @@
 package com.ungdungso.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
@@ -23,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.ungdungso.model.LotteryResults;
 import com.ungdungso.model.PrizeCode;
 import com.ungdungso.model.Province;
@@ -33,8 +28,6 @@ import com.ungdungso.service.LotteryResultService;
 import com.ungdungso.service.PrizeCodeService;
 import com.ungdungso.service.PrizeValueService;
 import com.ungdungso.service.ProvinceService;
-
-import ch.qos.logback.classic.joran.sanity.IfNestedWithinSecondPhaseElementSC;
 
 
 @Controller

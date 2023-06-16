@@ -17,7 +17,8 @@
 	href="https://npmcdn.com/flatpickr/dist/themes/material_orange.css">
 <script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<link rel="stylesheet" href="css/style.css">
+<script th:src="@{/js/script.js}"></script>
+<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 	<div class="container">
@@ -43,7 +44,7 @@
 								<label for="mien">Miền</label>
 								<div class="row">
 									<select class="form-select" id="sel1" name="sellist1"
-										onchange="areaChanged(this)">
+										th:onchange="areaChanged(this)">
 										<option>Chọn miền</option>
 										<option value="MN">Miền Nam</option>
 										<option value="MT">Miền Trung</option>
@@ -70,7 +71,7 @@
 							<div class="col-sm-12 col-lg-2">
 								<button type="button" id="btn-search"
 									class="btn btn-primary btn-dove" value="1"
-									onclick="searchticket(this)">Tìm kiếm</button>
+									th:onclick="searchticket(this)">Tìm kiếm</button>
 							</div>
 						</div>
 					</form>
@@ -105,47 +106,6 @@ $("#user-manage").removeClass("active");
 $("#ticket-manage").addClass("active");
 $("#province-manage").removeClass("active");
 </script>
-<script>
-function areaChanged(obj)
-{	    var mien = obj.value;  
-        $("#province").hide();   
-                    $.ajax({
-                    url : "/xskt/admin-load-province",
-                    type : "get",
-                    dataType:"text",
-                    data : {mien                       
-                    },
-                    success : function (result){
-                        $('#resultProvince').html(result);
-                    }
-                });                                                                                 
-}
-</script>
-
-<script>
-function searchticket(obj)
-
-{	var idProvince = $("#provinceAdmin").val();
-	var dateFrom = $("#dateFrom").val();
-	var dateTo = $("#dateTo").val();
-	var page = obj.value; 
-	$("#resultDetail").hide();	
-    $("#province").hide();   
-                    $.ajax({
-                    url : "/xskt/admin-search-ticket",
-                    type : "get",
-                    dataType:"text",
-                    data : {idProvince,  dateFrom,  dateTo, page                   
-                    },
-                    success : function (result){
-                    	$("#updateForm").hide();
-                    	$('#resultSearch').show();
-                        $('#resultSearch').html(result);
-                    }
-                });                                                                                 
-}
-</script>
-
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
@@ -157,27 +117,6 @@ dateFormat: "d-m-Y",
 flatpickr("#dateTo", {
 dateFormat: "d-m-Y",
 });
-</script>
-
-<script>
-function detailTicket(id, dateo)
-{
-var idProvince=id;
-let dateKQXS=dateo.value; 
-                    $.ajax({
-                    url : "/SWP490JPA/admin-detail-KQXS",
-                    type : "get",
-                    dataType:"text",
-                    data : {idProvince,dateKQXS                 
-                    },
-                    success : function (result){
-                    $("#updateForm").hide();
-                    $("#resultDetail").show();
-                        $('#resultDetail').html(result);
-                    }
-                });
-
-}
 </script>
 </body>
 </html>

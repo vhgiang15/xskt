@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Đại lý vé số HG</title>
+<script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+<script th:src="@{/js/script.js}"></script>
+<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 	<h6 class="bg-kqxshq">Kết quả tìm kiếm</h6>
@@ -51,48 +54,6 @@
 					onclick="searchProvince(this)">Last</button></li>
 		</ul>
 	</div>
-	
-	
-<script>	
-function searchProvince(obj)
-{	var keysearch= $("#province-name").val()
-	var page = obj.value; 
-	$("#resultDetail").hide();	
-
-                $("#province").hide();   
-                    $.ajax({
-                    url : "/xskt/admin-search-province",
-                    type : "get",
-                    dataType:"text",
-                    data : {keysearch,page                   
-                    },
-                    success : function (result){
-                    	$("#updateForm").hide();
-                    	$("#update-result").hide();
-                    	$('#resultSearch').show();
-                        $('#resultSearch').html(result);
-                    }
-                });                                                                                 
-}
-</script>	
-		
-<script>	
-function load_province(obj){ 
-            var idProvince  = obj.value;
-                $.ajax({
-                    url : "/xskt/admin-load-info-province",
-                    type : "get",
-                    dataType:"text",
-                    data : {idProvince                        
-                    },
-                    success : function (result){
-                    	$('#info-province').show();
-                        $('#info-province').html(result);
-                    }
-                });                
-            }
-</script>
-
 
 <script>
 function deleteProvince(obj)
@@ -121,18 +82,14 @@ swal("Xác nhận xóa Tỉnh?", {
                     success : function (result){
                     $('#resultSearch').hide();
                     $('#result-delete').show();
-                    $('#result-delete').html(result);
-                    
-                                      
+                    $('#result-delete').html(result);                                      
                     }
                 });      
-      break;
- 
+      break; 
     default:
       swal("Không thực hiện xóa");
   }
 });
-
 }
 </script>
 

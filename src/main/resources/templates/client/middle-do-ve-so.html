@@ -22,7 +22,7 @@
 						<label for="date">Ngày</label>
 						<div class="container-fluid">
 							<input id="mycal" class="form-control" name="date"
-								onchange="load_province()">
+								th:onchange="load_province()">
 						</div>
 					</div>
 
@@ -39,12 +39,12 @@
 						<label for="sove">Số vé</label>
 						<div class="container-fluid">
 							<input type="text" maxlength="6" class="form-control" id="sove"
-								onkeypress="return isNumberKey(event)">
+								th:onkeypress="return isNumberKey(event)">
 						</div>
 					</div>
 					<div class="col-sm-12 col-lg-2">
 						<button id="btn-dove" type="button"
-							class="btn btn-primary btn-dove" onclick="tracuuvedo()">Dò
+							class="btn btn-primary btn-dove" th:onclick="tracuuvedo()">Dò
 							vé</button>
 					</div>
 				</div>

@@ -13,7 +13,8 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<link rel="stylesheet" href="css/style.css">
+<script th:src="@{/js/script.js}"></script>
+<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 	<div class="container">
@@ -73,37 +74,12 @@
 </body>
 
 <script>
-   $('#info-province').hide();
-   $('#result-delete').hide();
-   $('#resultSearch').hide();
-
-</script>
-
-<script>
-function searchProvince(obj){
-			$('#resultSearch').show(); 
-            var keysearch = $("#province-name").val();
-            var page = obj.value; 
-                $.ajax({
-                    url : "/xskt/admin-search-province",
-                    type : "get",
-                    dataType:"text",
-                    data : {keysearch,page                       
-                    },
-                    success : function (result){
-                        $('#info-province').hide();
-                        $('#result-delete').hide();
-                        $('#resultSearch').show();
-                        $('#resultSearch').html(result);
-                    }
-                });                
-            }
-</script>
-
-<script>
-$("#user-manage").removeClass("active");
-$("#ticket-manage").removeClass("active");
-$("#province-manage").addClass("active");
+   	$('#info-province').hide();
+   	$('#result-delete').hide();
+   	$('#resultSearch').hide();
+	$("#user-manage").removeClass("active");
+	$("#ticket-manage").removeClass("active");
+	$("#province-manage").addClass("active");
 </script>
 
 </html>

@@ -5,23 +5,19 @@ import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
-
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.ungdungso.model.Account;
 import com.ungdungso.model.Email;
 import com.ungdungso.service.AccountService;
-
 import jakarta.mail.*;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
@@ -31,7 +27,7 @@ public class AccountController {
 	@Autowired
 	AccountService accountService;
 
-	@RequestMapping("/admin-user-manage")
+	@GetMapping("/admin-user-manage")
 	public ModelAndView userManage() {
 		ModelAndView model= new ModelAndView("admin/user-manage");
 		return model;
@@ -96,9 +92,9 @@ public class AccountController {
 	
 	
 	// Chức năng đổi mật khẩu áp dụng cho tất cả các user
-	@RequestMapping("/change-pass" )
+	@GetMapping("/change-pass" )
 	public ModelAndView changePass(@RequestParam("oldPass") String oldPass, @RequestParam("newPass") String newPass,
-			@RequestParam("conPass") String conPass, Authentication authentication,HttpServletResponse response) throws IOException {
+			@RequestParam("conPass") String conPass, Authentication authentication) throws IOException {
 		ModelAndView model = new ModelAndView("admin/alert");
 		User userDetails = (User) authentication.getPrincipal();
 		String user = userDetails.getUsername();
@@ -165,7 +161,7 @@ public class AccountController {
 	}
 
 	//Chức năng reset Pass áp dụng được cho tất cả các user, chỉ reset pass cho chính mình
-	@RequestMapping("/reset-pass")
+	@GetMapping("/reset-pass")
 	public ModelAndView resetPassUser(@RequestParam("email") String email)
 			throws MessagingException, UnsupportedEncodingException {
 		ModelAndView model = new ModelAndView("client/alert");

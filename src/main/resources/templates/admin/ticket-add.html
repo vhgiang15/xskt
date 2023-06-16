@@ -14,7 +14,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<link rel="stylesheet" href="css/style.css">
+<script th:src="@{/js/script.js}"></script>
+<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 	<div class="container">
@@ -40,8 +41,7 @@
 				</form>
 				</div>
 				
-				<button id="save-ticket" class="btn btn-primary" >Lưu kết quả Xổ Số</button>	
-				
+				<button id="save-ticket" class="btn btn-primary" >Lưu kết quả Xổ Số</button>					
 				<div class="row" id="result"></div>
 				
 			</div>

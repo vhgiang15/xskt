@@ -2,9 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+<script th:src="@{/js/script.js}"></script>
+<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-
 	<div class="d-grid" th:fragment="html_leftmenu_admin">
 		<button type="button" id="dashboard" class="btn btn-warning btn-lg btn-menu" onclick="location.href='admin-dashboard';">Dashboard</button>
 		<button type="button" id="ticket-manage" class="btn btn-warning btn-lg btn-menu active" onclick="location.href='admin-ticket-manage';">Quản lý	vé dò</button>

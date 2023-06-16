@@ -12,8 +12,8 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
-		
-<link href="css/style.css" rel="stylesheet">
+<script th:src="@{/js/script.js}"></script>
+<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 	<div class="container">
@@ -29,30 +29,8 @@
 			<div class="col-md-3 right-menu">
 				<div th:replace="/client/fragments :: html_right_silde"></div>
 			</div>
-
 		</div>
 		<div th:replace="/client/fragments :: html_footer"></div>
 	</div>
-<script>
-function resetPass()
-{	
-var email = $("#email").val();  
-                    $.ajax({
-                    url : "/reset-pass",
-                    type : "get",
-                    dataType:"text",
-                    data : {email                 
-                    },
-                    success : function (result){
-                        $('#alert-reset').html(result);
-                    }
-                });                                                                               
-}
-</script>
-	
-	
 </body>
-
-
-
 </html>

@@ -10,62 +10,8 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+<script th:src="@{/js/script.js}"></script>
 <link th:href="@{/css/style.css}" rel="stylesheet"/>
-
-<script>
-$(document).ready(function(){
-	 $('#btn-nav-previous').click(function(){
-	        $(".menu-inner-box").animate({scrollLeft: "-=150px"});
-	    });
-	    
-	    $('#btn-nav-next').click(function(){
-	        $(".menu-inner-box").animate({scrollLeft: "+=150px"});
-	    });
-	    
-	    function trigger(obj){
-	        let regExpWeak = /[a-z]/;
-	        let regExpMedium = /\d+/;
-	        let regExpStrong = /.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/;
-	        let stringPass=obj.value;
-	        
-	        if(stringPass.length <= 3 && (stringPass.match(regExpWeak) || stringPass.match(regExpMedium) || stringPass.match(regExpStrong))) 
-	        {	$("#text").html("Mật khẩu yếu");
-	        	$("#btn-doipass").addClass("disabled");
-	        }
-	        if(stringPass.length >= 6 && ((stringPass.match(regExpWeak) && stringPass.match(regExpMedium)) || (stringPass.match(regExpMedium) && stringPass.match(regExpStrong)) || (stringPass.match(regExpWeak) && stringPass.match(regExpStrong))))
-	         {	$("#text").html("Mật khẩu trung bình");
-	         	$("#btn-doipass").removeClass("disabled");   
-	         }
-	        if(stringPass.length >= 6 && stringPass.match(regExpWeak) && stringPass.match(regExpMedium) && stringPass.match(regExpStrong))
-	        	{	$("#text").html("Mật khẩu mạnh");
-	        		$("#btn-doipass").removeClass("disabled");
-	        	}
-	   };
-	   
-	   function registerinfo()
-	   {
-	   var fullName=$("#fullname").val(); 
-	   var user=$("#userform").val();
-	   var phone=$("#phoneform").val();
-	   var mail=$("#emailform").val();
-	   $('#alert-register').text("xin chao");
-	   $.ajax({
-	            url : "/register-user",
-	            type : "get",
-	            dataType:"text",
-	            data : {fullName,user,phone,mail                
-	                    },
-	            success : function (result){
-	            $('#alert-register').html(result);
-	                       }
-	   }); 
-	   }  
-	   
-	
-	
-})
-</script>
-
 </head>
 <body>
 	<div th:fragment="html_header">
@@ -194,7 +140,7 @@ $(document).ready(function(){
 									required />
 							</div>
 							<div class="text-center pt-1 mb-3 pb-1">
-								<button class="btn btn-primary" onclick="registerinfo()">Đăng ký</button>
+								<button class="btn btn-primary" th:onclick="registerinfo()">Đăng ký</button>
 							</div>
 							<div class="d-flex align-items-center justify-content-center">
 								<p class="mb-0 me-2">
@@ -228,7 +174,7 @@ $(document).ready(function(){
 
 							<div class="form-outline mb-2">
 								<label class="form-label">Mật khẩu mới</label> <input
-									id="newpass" onkeyup="trigger(this)" type="password"
+									id="newpass" th:onkeyup="trigger(this)" type="password"
 									class="form-control" required />
 							</div>
 
@@ -243,7 +189,7 @@ $(document).ready(function(){
 						<!-- Modal footer -->
 						<div class="modal-footer">
 							<button id="btn-doipass" class="btn btn-primary disabled"
-								 onclick="changePass()">Thay đổi mật khẩu</button>
+								 th:onclick="changePass()">Thay đổi mật khẩu</button>
 							<button class="btn btn-danger"
 								data-bs-dismiss="modal">Close</button>
 						</div>
@@ -251,31 +197,6 @@ $(document).ready(function(){
 			</div>
 		</div>
 
-
-
-
-</script>
-
-	<script>
-function changePass()
-{
-var oldPass=$("#oldpass").val();  
-var newPass=$("#newpass").val(); 
-var conPass=$("#conwpass").val(); 
-$.ajax({
-         url : "/change-pass",
-         type : "get",
-         dataType:"text",
-         data : {oldPass,newPass,conPass                
-                 },
-         success : function (result){
-         $('#alert-change-pass').html(result);
-                    }
-}); 
-}  
-</script>
-
-		
 
 	</div>
 	<div th:fragment="html_footer">

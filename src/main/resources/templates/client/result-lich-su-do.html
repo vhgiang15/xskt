@@ -35,13 +35,13 @@
 		<ul class="pagination d-flex justify-content-center">
 			<li class="page-item"><button type="button" class="btn btn-link btn-sm" value="1" onclick="searchhistory(this)">Đầu</button></li>
 			
-			<li class="page-item" th:if="${indexPage>1}"><button type="button" class="btn btn-link btn-sm" th:value="${(indexPage-1)}" onclick="searchhistory(this)">Trước</button></li>
+			<li class="page-item" th:if="${indexPage>1}"><button type="button" class="btn btn-link btn-sm" th:value="${(indexPage-1)}" th:onclick="searchhistory(this)">Trước</button></li>
 			
 			<li class="page-item"><button type="button" class="btn btn-link btn-sm"> <span th:text="${indexPage}"></span> of <span th:text="${totalPage}"></span></button></li>
 			
-			<li class="page-item" th:if="${indexPage<totalPage}"><button type="button" class="btn btn-link btn-sm" th:value="${(indexPage+1)}" onclick="searchhistory(this)">Sau</button></li>
+			<li class="page-item" th:if="${indexPage<totalPage}"><button type="button" class="btn btn-link btn-sm" th:value="${(indexPage+1)}" th:onclick="searchhistory(this)">Sau</button></li>
 			
-			<li class="page-item"><button type="button" class="btn btn-link btn-sm" th:value="${totalPage}" onclick="searchhistory(this)">Cuối</button></li>
+			<li class="page-item"><button type="button" class="btn btn-link btn-sm" th:value="${totalPage}" th:onclick="searchhistory(this)">Cuối</button></li>
 		</ul>
 	</div>
 </body>

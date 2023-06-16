@@ -11,7 +11,8 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
-<link rel="stylesheet" href="css/style.css">
+<script th:src="@{/js/script.js}"></script>
+<link rel="stylesheet" th:href="@{/css/style.css}">
 
 </head>
 <body>
@@ -39,14 +40,14 @@
 					<td th:text="${user.permission}"></td>
 					<td th:text="${user.available}"></td>
 					<td>
-						<button type="button" class="btn btn-link btn-sm"  th:classappend="${user.userName=='admin' ? 'disabled' : ''}"  th:value="${user.userName}" onclick="changepermision(this)">
+						<button type="button" class="btn btn-link btn-sm"  th:classappend="${user.userName=='admin' ? 'disabled' : ''}"  th:value="${user.userName}" th:onclick="changepermision(this)">
 							<span th:if="${user.permission=='ROLE_ADMIN'}">To User</span>
 							<span th:if="${user.permission=='ROLE_USER'}">To Admin</span>
 						</button>
 					</td>
 					<td>
 						<button type="button" class="btn btn-link btn-sm" th:classappend="${user.userName=='admin' ? 'disabled' : ''}"
-							th:value="${user.userName}" onclick="changestatus(this)">
+							th:value="${user.userName}" th:onclick="changestatus(this)">
 							<span th:if="${user.available=='enable'}">Disable</span>
 							<span th:if="${user.available=='disable'}">Enable</span>
 						</button>
@@ -55,7 +56,7 @@
 					<td>
 						<button type="button"
 							class="btn btn-link btn-sm" th:classappend="${user.available=='disable' ? 'disabled' : ''}"
-							th:value="${user.userName}" onclick="resetPass(this)">
+							th:value="${user.userName}" th:onclick="resetPass(this)">
 							Reset pass</button>
 					</td>
 				</tr>
@@ -64,15 +65,15 @@
 
 	<div class="container mt-3">
 		<ul class="pagination d-flex justify-content-center">
-			<li class="page-item"><button type="button"	class="btn btn-link btn-sm" value="1" onclick="searchUser(this)">First</button></li>
+			<li class="page-item"><button type="button"	class="btn btn-link btn-sm" value="1" th:onclick="searchUser(this)">First</button></li>
 
-			<li class="page-item" th:if="${indexPage>1}"> <button type="button"	class="btn btn-link btn-sm" th:value="${(indexPage-1)}" onclick="searchUser(this)">Pre</button></li>
+			<li class="page-item" th:if="${indexPage>1}"> <button type="button"	class="btn btn-link btn-sm" th:value="${(indexPage-1)}" th:onclick="searchUser(this)">Pre</button></li>
 
 			<li class="page-item"> <button id="currpage" type="button" class="btn btn-link btn-sm" th:value="${indexPage}"><span th:text="${indexPage}"></span> of <span th:text="${totalPage}"></span></button></li>
 
-			<li class="page-item" th:if="${indexPage<totalPage}" > <button type="button" class="btn btn-link btn-sm" th:value="${(indexPage+1)}" onclick="searchUser(this)">Next</button></li>
+			<li class="page-item" th:if="${indexPage<totalPage}" > <button type="button" class="btn btn-link btn-sm" th:value="${(indexPage+1)}" th:onclick="searchUser(this)">Next</button></li>
 
-			<li class="page-item"><button type="button" class="btn btn-link btn-sm" th:value="${totalPage}" onclick="searchUser(this)">Last</button></li>
+			<li class="page-item"><button type="button" class="btn btn-link btn-sm" th:value="${totalPage}" th:onclick="searchUser(this)">Last</button></li>
 		</ul>
 	</div>
 

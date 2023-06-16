@@ -13,8 +13,10 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
-<link rel="stylesheet" href="css/style.css">
+<script th:src="@{/js/script.js}"></script>
+<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 	<div class="container">
@@ -33,39 +35,16 @@
 
 		</div>
 		<div th:replace="/client/fragments :: html_footer"></div>
-	</div>
-	
-	
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+	</div>	
+
 <script>
 flatpickr("#datefrom", {
 dateFormat: "d-m-Y",
-
 });
 
 flatpickr("#dateto", {
 dateFormat: "d-m-Y",
-
 });
 </script>
-<script>
-function searchhistory(obj)
-{	var dateFrom=$("#datefrom").val(); 
-    var dateTo=$("#dateto").val();
-    var page=obj.value;
-                   $.ajax({
-                    url : "/xskt/tra-cuu-lich-su-do",
-                    type : "get",
-                    dataType:"text",
-                    data : {dateFrom, dateTo, page                     
-                    },
-                    success : function (result){
-                        $('#resultHistory').html(result);
-                    }
-                });                                                                                 
-}
-</script>
-
-
 </body>
 </html>

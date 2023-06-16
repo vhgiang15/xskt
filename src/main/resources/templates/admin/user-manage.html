@@ -13,7 +13,8 @@
 	
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
-<link rel="stylesheet" href="css/style.css">
+<script th:src="@{/js/script.js}"></script>
+<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 	<div class="container">
@@ -59,33 +60,11 @@
 	</div>
 
 
-	<script>
+<script>
 $("#dashboard").removeClass("active");
 $("#user-manage").addClass("active");
 $("#ticket-manage").removeClass("active");
 $("#province-manage").removeClass("active");
-</script>
-
-<script>
-function searchUser(obj)
-{
-var username=$("#username").val();
-var phone=$("#phone").val();
-var page=obj.value;
-$.ajax({
-         url : "/xskt/admin-search-user",
-         type : "get",
-         dataType:"text",
-         data : {username,phone, page                 
-                 },
-         success : function (result){
-         $('#ressult-delete').hide(); 
-         $('#form-update-user').hide(); 
-         $("#resultSearchUser").show();
-         $('#resultSearchUser').html(result);
-                    }
-}); 
-}  
 </script>
 </body>
 </html>
